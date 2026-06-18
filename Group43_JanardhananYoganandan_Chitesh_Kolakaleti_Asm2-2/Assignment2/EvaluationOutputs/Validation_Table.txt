@@ -1,0 +1,26 @@
+MODEL_C VALIDATION AND PARAMETER SELECTION TABLE:
+
+Validation method:
+Systematic variation was used to compare the final Model_C setting against the two baseline models across all topics R101–R150. The same three evaluation measures were used for all models: MAP, Precision@10, and DCG@10.
+
+Parameter meanings:
+alpha = weight assigned to the BM25 component in the hybrid Model_C score.
+lambda = smoothing parameter used in the JM component of Model_C.
+top_docs = number of top BM25-ranked documents used as pseudo-relevant documents.
+expansion_terms = number of expansion terms selected from the pseudo-relevant documents.
+
+Validation Results:
+
+Configuration                                      MAP        P@10       DCG@10
+Baseline1: BM25 title query                        0.491078   0.358000   2.090029
+Baseline2: JM title query                          0.458335   0.344000   1.942974
+Model_C alpha=0.05 lambda=0.1 top_docs=5 terms=1   0.497682   0.372000   2.149772
+
+Selected configuration:
+alpha = 0.05
+lambda = 0.1
+top_docs = 5
+expansion_terms = 1
+
+Justification:
+The selected Model_C configuration achieved the highest average performance across all three required metrics: MAP, Precision@10, and DCG@10. The final Model_C result was MAP = 0.497682, Precision@10 = 0.372000, and DCG@10 = 2.149772. This shows that Model_C performs slightly better than Baseline1 and clearly better than Baseline2 in the average evaluation summary. Model_C was selected because it combines BM25-based pseudo-relevance feedback with a hybrid BM25 and Jelinek-Mercer re-ranking score.
